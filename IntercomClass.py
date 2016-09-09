@@ -20,10 +20,20 @@ class IntercomClass :
 		username = "qwertyui"
 		password = "dshghfsjdhghsduihgihsdiughsdhuioghsdguu"
 
-	global eventsUrl
+	global eventsUrl,usersUrl,headerData
 	eventsUrl = 'https://api.intercom.io/events'
+	usersUrl = 'https://api.intercom.io/users'
+	headerData = {"Content-Type": "application/json"}
 
-	def create_event(self,data) :		
-		headerData = {"Content-Type": "application/json"}
+	def create_event(self,data) :
 		response = requests.post(eventsUrl,auth=(username, password),data=data,headers=headerData)
 		return response.text
+
+	def create_user(self,data) :
+		response = requests.post(usersUrl,auth=(username, password),data=data,headers=headerData)
+		return response.text
+
+	def delete_user(self,data) :
+		response = requests.delete(usersUrl,auth=(username, password),data=data,headers=headerData)
+		return response.text
+
